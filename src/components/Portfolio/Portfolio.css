@@ -1,0 +1,116 @@
+.portfolio {
+}
+.portfolio__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 14px 70px;
+}
+@media (min-width: 768px) {
+  .portfolio__container {
+    padding: 0 50px 90px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .portfolio__container {
+    padding: 0 70px 125px;
+  }
+}
+
+.portfolio__header {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #a0a0a0;
+  margin: 0;
+  margin-bottom: 40px;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .portfolio__header {
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 50px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .portfolio__header {
+    color: #8b8b8b;
+  }
+}
+
+.portfolio__links {
+  width: 100%;
+}
+.portfolio__link-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.portfolio__link-item {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.04em;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.portfolio__link-item:hover {
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .portfolio__link-item {
+    font-size: 28px;
+    line-height: 50px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .portfolio__link-item {
+    font-size: 30px;
+    line-height: 50px;
+  }
+}
+
+.portfolio__line-devider {
+  height: 1px;
+  width: 100%;
+  background-color: #e6e6e6;
+  margin: 20px auto;
+}
+@media (min-width: 1280px) {
+  .portfolio__line-devider {
+    background-color: #424242;
+  }
+}
+.portfolio__arrow-icon {
+  background-image: url('../../images/text__COLOR_font-main.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 11px;
+  height: 22px;
+  padding-left: 22px;
+}
+.portfolio__link-item:hover + .portfolio__arrow-icon {
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .portfolio__arrow-icon {
+    background-size: 17px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .portfolio__arrow-icon {
+    background-size: 20px;
+  }
+}

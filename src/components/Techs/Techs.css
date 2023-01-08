@@ -1,0 +1,130 @@
+.techs {
+}
+
+.techs__container {
+  max-width: 1140px;
+  padding: 70px 18px;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .techs__container {
+    padding: 90px 50px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .techs__container {
+    padding: 100px 70px;
+  }
+}
+
+.techs__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom: 50px;
+}
+@media (min-width: 768px) {
+  .techs__description {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .techs__description {
+    padding-top: 90px;
+    padding-bottom: 100px;
+  }
+}
+
+.techs__header {
+  font-size: 30px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .techs__header {
+    font-size: 50px;
+    line-height: 58px;
+    margin-bottom: 22px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .techs__header {
+    margin-bottom: 26px;
+  }
+}
+
+.techs__subheader {
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+@media (min-width: 768px) {
+  .techs__subheader {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .techs__subheader {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.techs__items-list {
+  width: 178px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 10px;
+}
+@media (min-width: 420px) {
+  .techs__items-list {
+    width: 272px;
+  }
+}
+@media (min-width: 540px) {
+  .techs__items-list {
+    width: 366px;
+  }
+}
+
+@media (min-width: 768px) {
+  .techs__items-list {
+    width: auto;
+  }
+}
+
+.tech__item {
+  background-color: #303030;
+  width: 84px;
+  height: 57px;
+  font-size: 12px;
+  line-height: 57px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  border-radius: 10px;
+}
+
+@media (min-width: 1280px) {
+  .tech__item {
+    width: 90px;
+    height: 60px;
+    font-size: 14px;
+    line-height: 60px;
+  }
+}
