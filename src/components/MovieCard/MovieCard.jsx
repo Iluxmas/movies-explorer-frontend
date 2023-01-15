@@ -19,7 +19,7 @@ export default function MovieCard({ title, duration, posterURL, isFav }) {
           <h3 className='card__title'>{title}</h3>
           <span className='card__duration'>{durationText}</span>
         </div>
-        <span className={iconStyle}></span>
+        <span className={iconStyle} title='Добавить в закладки'></span>
       </div>
       <img className='card__poster' src={posterURL}></img>
     </li>

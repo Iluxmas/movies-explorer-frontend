@@ -38,8 +38,12 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 33%;
+  transition: all 0.2s ease;
 }
-
+.card__favorite-icon:hover {
+  cursor: pointer;
+  background-color: #3ddc84;
+}
 .card__favorite-icon_active {
   background-color: #3ddc84;
   background-image: url(../../images/icon__COLOR_invisible.svg);

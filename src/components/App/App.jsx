@@ -9,7 +9,7 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
-
+import SavedMovies from '../SavedMovies/SavedMovies';
 import './App.css';
 
 export default function App() {

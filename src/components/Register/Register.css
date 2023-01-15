@@ -43,16 +43,6 @@
   }
 }
 
-.register__logo {
-  display: inline-block;
-  background-image: url(../../images/logo.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 38px 38px;
-  padding-left: 38px;
-  height: 38px;
-}
-
 .register__title {
   font-weight: 500;
   font-size: 24px;
@@ -136,6 +126,7 @@
   border: none;
   cursor: pointer;
   max-width: 396px;
+  transition: all 0.2s ease;
 }
 @media (min-width: 768px) {
   .register__submit-button {
@@ -171,7 +162,14 @@
   color: #4285f4;
   text-decoration: none;
   margin-left: 7px;
-  transition: color 0.15s ease;
+  transition: color 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .register__enter-link {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
 
 .register__enter-link:visited {

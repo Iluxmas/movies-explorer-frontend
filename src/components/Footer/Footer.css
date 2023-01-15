@@ -70,6 +70,11 @@
   line-height: 15px;
   text-decoration: none;
   color: #ffffff;
+  transition: opacity 0.2s ease;
+}
+
+.footer__link:hover {
+  opacity: 0.5;
 }
 
 @media (min-width: 540px) {

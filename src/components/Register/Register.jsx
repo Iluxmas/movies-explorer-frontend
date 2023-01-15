@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Logo from '../Logo/Logo';
 
 import './Register.css';
 
@@ -7,7 +8,7 @@ export default function Register() {
   return (
     <div className='register'>
       <header className='register__header'>
-        <NavLink className='register__logo' to='/'></NavLink>
+        <Logo />
         <h1 className='register__title'>Добро пожаловать!</h1>
       </header>
 
