@@ -8,14 +8,27 @@
 .navtab__nav-list {
   list-style-type: none;
   display: flex;
-  gap: 40px;
+  gap: 24px;
   align-items: center;
   padding: 0;
 }
-.navtab__nav-item {
+@media (min-width: 768px) {
+  .navtab__nav-list {
+    gap: 40px;
+  }
+}
+
+.navtab__link {
   color: white;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 11px;
   line-height: 16px;
+  text-decoration: none;
   border-bottom: 1px solid white;
+}
+@media (min-width: 768px) {
+  .navtab__link {
+    font-size: 13px;
+    line-height: 16px;
+  }
 }

@@ -1,0 +1,50 @@
+.card {
+  background-color: #222222;
+  width: 100%;
+}
+.card__header {
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.card__title {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  margin: 0;
+}
+
+.card__duration {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #8b8b8b;
+}
+
+.card__favorite-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #313131;
+  background-image: url(../../images/icon__COLOR_stroke-2.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 33%;
+}
+
+.card__favorite-icon_active {
+  background-color: #3ddc84;
+  background-image: url(../../images/icon__COLOR_invisible.svg);
+}
+
+.card__poster {
+  width: 100%;
+}
