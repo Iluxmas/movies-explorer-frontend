@@ -104,6 +104,12 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+  transition: all 0.2s ease;
+}
+
+.profile__btn:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

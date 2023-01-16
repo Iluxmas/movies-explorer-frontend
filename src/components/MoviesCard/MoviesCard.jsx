@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './MovieCard.css';
+import './MoviesCard.css';
 
-export default function MovieCard({ title, duration, posterURL, isFav }) {
+export default function MoviesCard({ title, duration, posterURL, isFav }) {
   const iconStyle = isFav ? 'card__favorite-icon card__favorite-icon_active' : 'card__favorite-icon';
 
   const hours = Math.floor(duration / 60);

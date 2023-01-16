@@ -3,6 +3,7 @@
   font-style: normal;
   font-weight: 400;
   color: white;
+  min-height: 100vh;
   background-color: #202020;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

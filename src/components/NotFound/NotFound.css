@@ -8,12 +8,25 @@
   padding-top: 30px;
   box-sizing: border-box;
 }
+@media (min-width: 768px) {
+  .not-found {
+    padding-top: 222px;
+    padding-bottom: 222px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .not-found {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
 .not-found__header {
   font-weight: 400;
   font-size: 80px;
   line-height: 97px;
   margin: 0;
-  /* margin-top: auto; */
+  margin-top: auto;
   margin-bottom: 10px;
 }
 @media (min-width: 768px) {
@@ -28,6 +41,7 @@
   font-size: 12px;
   line-height: 15px;
   margin: 0;
+  margin-bottom: 20px;
 }
 @media (min-width: 768px) {
   .not-found__subheader {
@@ -59,6 +73,6 @@
   .not-found__return {
     font-size: 14px;
     line-height: 17px;
-    margin-top: 184px;
+    margin-top: auto;
   }
 }
