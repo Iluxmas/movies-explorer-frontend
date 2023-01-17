@@ -19,7 +19,16 @@ export default function SavedMovies() {
   return (
     <section className='saved-movies'>
       <SearchForm />
-      <MoviesCardList>{cards}</MoviesCardList>
+      <MoviesCardList>
+        <MoviesCard
+          title={'Mesto mesto, this movie name could be very very long, enough to break your wonderful layout!'}
+          duration={122}
+          key={123}
+          posterURL={'https://www.film.ru/sites/default/files/filefield_paths/every.jpg'}
+          isFav={2 > 1}
+        />
+        {cards}
+      </MoviesCardList>
     </section>
   );
 }
