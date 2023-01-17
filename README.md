@@ -15,19 +15,11 @@
 - Authorization
 - Changing User profile data
 <!-- - Modal windows opening and forms validation -->
-<<<<<<< HEAD
 
 <!-- Webpack was used for bundling, link at the bottom.  -->
 
 <!--In case of cloning of main branch, execute next commands to run the project - `npm i` to install dependencies, `npm run dev` to run page on port :3000
-=======
-- Changing User profile data
-
-<!-- Webpack was used for bundling, link at the bottom.  -->
-
-In case of cloning of main branch, execute next commands to run the project - `npm i` to install dependencies, `npm run dev` to run page on port :3000
->>>>>>> 56a67c9 (add: components done)
 
 **GitHub**
 
-[Link to GitHub Pages](not yet) (use CTRL+click or ⌘+click to open in new tab)-->
+[Link to GitHub Pages](not yet) (use CTRL+click or ⌘+click to open in new tab)-->-->
