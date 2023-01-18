@@ -16,7 +16,14 @@ export default function Register() {
         <label className='register__label' htmlFor='register_name'>
           Имя
         </label>
-        <input className='register__input' type='text' id='register_name' name='name' placeholder='Введите имя...' />
+        <input
+          className='register__input'
+          type='text'
+          id='register_name'
+          name='name'
+          placeholder='Введите имя...'
+          required
+        />
         <span className='register__span-error register__span-error_type_name'></span>
 
         <label className='register__label' htmlFor='register_email'>
@@ -28,6 +35,7 @@ export default function Register() {
           id='register_email'
           name='email'
           placeholder='Введите почту...'
+          required
         />
         <span className='register__span-error register__span-error_type_email'></span>
 
@@ -40,6 +48,7 @@ export default function Register() {
           id='register_password'
           name='password'
           placeholder='Введите пароль...'
+          required
         />
         <span className='register__span-error register__span-error_type_password'>Что-то пошло не так...</span>
       </form>

@@ -89,6 +89,7 @@
   width: 80%;
 }
 .project__breakdown-time {
+  margin: 0;
   height: 36px;
   font-size: 14px;
   line-height: 36px;

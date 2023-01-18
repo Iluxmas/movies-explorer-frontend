@@ -24,12 +24,12 @@ export default function AboutProject() {
         </div>
         <div className='project__breakdown'>
           <div className='project__breakdown-column project__breakdown-column_backend'>
-            <div className='project__breakdown-time project__breakdown-time_backend'>1 неделя</div>
+            <p className='project__breakdown-time project__breakdown-time_backend'>1 неделя</p>
             <h4 className='project__breakdown-title'>Back-end</h4>
           </div>
 
           <div className='project__breakdown-column project__breakdown-column_frontend'>
-            <div className='project__breakdown-time project__breakdown-time_frontend'>4 недели</div>
+            <p className='project__breakdown-time project__breakdown-time_frontend'>4 недели</p>
             <h4 className='project__breakdown-title'>Front-end</h4>
           </div>
         </div>

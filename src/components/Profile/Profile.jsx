@@ -11,14 +11,28 @@ export default function Profile() {
           <label className='profile__label' htmlFor='profile_name'>
             Имя
           </label>
-          <input className='profile__input' type='text' id='profile_name' name='name' placeholder='Введите имя' />
+          <input
+            className='profile__input'
+            type='text'
+            id='profile_name'
+            name='name'
+            placeholder='Введите имя'
+            required
+          />
         </div>
         <div className='profile__line-divider'></div>
         <div className='profile__input-container'>
           <label className='profile__label' htmlFor='profile_email'>
             E-mail
           </label>
-          <input className='profile__input' type='email' id='profile_email' name='email' placeholder='Введите почту' />
+          <input
+            className='profile__input'
+            type='email'
+            id='profile_email'
+            name='email'
+            placeholder='Введите почту'
+            required
+          />
         </div>
       </form>
       <button className='profile__btn profile__btn_type_submit' type='submit'>

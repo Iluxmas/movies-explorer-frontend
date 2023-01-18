@@ -7,7 +7,7 @@ export default function SearchForm() {
     <section className='search'>
       <form action='' className='search__form'>
         <div className='search__bar'>
-          <input className='search__input' placeholder='Фильм' type='text' />
+          <input className='search__input' placeholder='Фильм' type='text' required />
           <button className='search__submit' type='button'>
             Найти
           </button>
@@ -19,8 +19,6 @@ export default function SearchForm() {
             <span className='search__slider'></span>
           </label>
         </div>
-        {/* <label htmlFor='' className='search__checkbox-label'></label>
-        <input type='checkbox'></input> */}
       </form>
     </section>
   );
