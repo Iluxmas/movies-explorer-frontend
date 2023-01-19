@@ -1,0 +1,146 @@
+.aboutme {
+}
+
+.aboutme__container {
+  max-width: 1140px;
+  padding: 70px 14px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .aboutme__container {
+    padding: 90px 50px;
+  }
+}
+@media (min-width: 1280px) {
+  .aboutme__container {
+    padding: 100px 70px;
+  }
+}
+
+.aboutme__info {
+  padding-top: 60px;
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+}
+
+@media (min-width: 660px) {
+  .aboutme__info {
+    padding-top: 70px;
+    display: flex;
+    gap: 50px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
+.aboutme__photo {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+@media (min-width: 660px) {
+  .aboutme__photo {
+    margin: 0;
+    margin-left: auto;
+    width: 255px;
+    height: 307px;
+  }
+}
+
+.aboutme__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutme__name {
+  margin: 0;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: -0.04em;
+}
+
+@media (min-width: 768px) {
+  .aboutme__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .aboutme__name {
+    font-size: 50px;
+    line-height: 58px;
+  }
+}
+
+.aboutme__subheader {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+@media (min-width: 768px) {
+  .aboutme__subheader {
+    margin-top: 16px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .aboutme__subheader {
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+
+.aboutme__paragraph {
+  max-width: 600px;
+  font-size: 11px;
+  line-height: 16px;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .aboutme__paragraph {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .aboutme__paragraph {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+.aboutme__link {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+  color: white;
+  margin-top: 40px;
+  transition: opacity 0.2s ease;
+}
+.aboutme__link:hover {
+  opacity: 0.5;
+}
+
+@media (min-width: 660px) {
+  .aboutme__link {
+    margin-top: auto;
+  }
+}

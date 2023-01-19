@@ -1,0 +1,60 @@
+.promo {
+  margin-top: -74px;
+  height: 644px;
+  background-color: #073042;
+  padding-top: 216px;
+  padding-bottom: 180px;
+  box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .promo {
+    height: 858px;
+    padding-top: 298px;
+    padding-bottom: 240px;
+  }
+}
+@media (min-width: 1280px) {
+  .promo {
+    height: 596px;
+    padding-top: 156px;
+    padding-bottom: 122px;
+  }
+}
+
+.promo__content {
+  background-image: url(../../images/pic__COLOR_landing-logo.svg);
+  background-position: center;
+  background-size: 248px 248px;
+  background-repeat: no-repeat;
+  /* width: 730px; */
+  height: 248px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .promo__content {
+    background-size: 320px 320px;
+    height: 320px;
+    padding: 0 19px;
+  }
+}
+
+.promo__title {
+  margin: 0 auto;
+  max-width: 500px;
+  font-weight: 400;
+  font-size: 31px;
+  line-height: 39px;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+@media (min-width: 768px) {
+  .promo__title {
+    max-width: 730px;
+    font-size: 50px;
+    line-height: 58px;
+  }
+}

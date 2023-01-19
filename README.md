@@ -22,4 +22,4 @@
 
 **GitHub**
 
-[Link to GitHub Pages](not yet) (use CTRL+click or ⌘+click to open in new tab)-->
+[Link to GitHub Pages](not yet) (use CTRL+click or ⌘+click to open in new tab)-->-->
