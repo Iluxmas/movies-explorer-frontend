@@ -93,7 +93,7 @@
   height: 1px;
   width: 100%;
   background-color: #424242;
-  margin-top: 16px;
+  /* margin-top: 16px; */
   margin-bottom: 16px;
 }
 
@@ -132,6 +132,13 @@
   }
 }
 
+.profile__btn_disabled {
+  opacity: 0.5;
+}
+.profile__btn_disabled:hover {
+  cursor: default;
+}
+
 .profile__btn_type_logout {
   color: #ee3465;
 }
@@ -139,4 +146,19 @@
   .profile__btn_type_logout {
     margin-bottom: auto;
   }
+}
+.profile__input-error {
+  color: #ee3465;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: end;
+  padding-right: 2px;
+  height: 16px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.profile__input-error_visible {
+  opacity: 1;
 }
