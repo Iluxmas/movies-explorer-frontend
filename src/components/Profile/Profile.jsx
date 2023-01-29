@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import patterns from '../../utils/constants';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import './Profile.css';
 
@@ -11,9 +12,11 @@ export default function Profile({ onSubmit, onLogout }) {
   const [isNameValid, setIsNameValid] = useState(true);
   const [isEmailValid, setIsEmailValid] = useState(true);
 
+  const currentUser = useContext(CurrentUserContext);
+
   useEffect(() => {
-    setName(userData.name);
-    setEmail(userData.email);
+    setName(currentUser.name);
+    setEmail(currentUser.email);
   }, []);
 
   function handleInputChange(target, setState, setValidity) {
@@ -21,8 +24,9 @@ export default function Profile({ onSubmit, onLogout }) {
     setValidity(target.validity.valid);
   }
 
-  function handleSubmit() {
-    onSubmit();
+  function handleUpdataData() {
+    const newData = { name, email };
+    onSubmit(newData);
   }
 
   let submitBtnClass = 'profile__btn profile__btn_type_submit profile__btn_disabled';
@@ -40,7 +44,7 @@ export default function Profile({ onSubmit, onLogout }) {
     emailErrorSpanClass = 'profile__input-error profile__input-error_email profile__input-error_visible';
   }
 
-  if (isNameValid && isEmailValid && (name !== userData.name || email !== userData.email)) {
+  if (isNameValid && isEmailValid && (name !== currentUser.name || email !== currentUser.email)) {
     submitBtnClass = 'profile__btn profile__btn_type_submit';
   } else {
     submitBtnClass = 'profile__btn profile__btn_type_submit profile__btn_disabled';
@@ -48,7 +52,7 @@ export default function Profile({ onSubmit, onLogout }) {
 
   return (
     <div className='profile'>
-      <h1 className='profile__title'>Привет, {userData?.name}!</h1>
+      <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
       <form className='profile__form' noValidate autoComplete='off'>
         <div className='profile__input-container'>
           <label className='profile__label' htmlFor='profile_name'>
@@ -90,7 +94,12 @@ export default function Profile({ onSubmit, onLogout }) {
         </div>
         <span className={emailErrorSpanClass}>{emailErrorText}</span>
       </form>
-      <button className={submitBtnClass} type='submit' onClick={handleSubmit} disabled={!isNameValid || !isEmailValid}>
+      <button
+        className={submitBtnClass}
+        type='submit'
+        onClick={handleUpdataData}
+        disabled={!isNameValid || !isEmailValid}
+      >
         Редактировать
       </button>
       <button className='profile__btn profile__btn_type_logout' type='button' onClick={onLogout}>

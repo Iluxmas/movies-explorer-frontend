@@ -24,3 +24,10 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+.no-result {
+  padding: 30px 0;
+}
+
+.no-result__text {
+  text-align: center;
+}

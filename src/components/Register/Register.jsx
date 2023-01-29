@@ -5,7 +5,7 @@ import patterns from '../../utils/constants';
 
 import './Register.css';
 
-export default function Register() {
+export default function Register({ onSignup }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,16 +27,28 @@ export default function Register() {
     }
   }
 
+  // useEffect(() => {
+  // }, [name, email, password]);
+
   let submitBtnClass = 'register__submit-btn register__submit-btn_disabled';
   let nameErrorText = isNameValid ? '' : 'имя должно быть длиной от 2 до 30 символов';
   // (кирилица, латиница, дефис и пробел)
-  let emailErrorText = isEmailValid ? '' : 'имя должно быть длиной от 2 до 30 символов';
+  let emailErrorText = isEmailValid ? '' : 'не соответствует формату электронной почты';
   let passwordErrorText = isPasswordValid ? '' : 'это поле не должно быть пустым';
 
   if (isNameValid && isEmailValid && isPasswordValid) {
     submitBtnClass = 'register__submit-btn';
   } else {
     submitBtnClass = 'register__submit-btn register__submit-btn_disabled';
+  }
+
+  function handleRegister() {
+    if (name && email && password) {
+      onSignup(name, email, password);
+      setName('');
+      setEmail('');
+      setPassword('');
+    }
   }
 
   return (
@@ -46,7 +58,7 @@ export default function Register() {
         <h1 className='register__title'>Добро пожаловать!</h1>
       </header>
 
-      <form className='register__form' noValidate autoComplete='off'>
+      <form className='register__form' noValidate autoComplete='new-password'>
         <label className='register__label' htmlFor='register_name'>
           Имя
         </label>
@@ -99,7 +111,7 @@ export default function Register() {
         />
         <span className='register__span-error'>{passwordErrorText}</span>
       </form>
-      <button className={submitBtnClass} type='submit'>
+      <button className={submitBtnClass} type='submit' onClick={handleRegister}>
         Зарегистрироваться
       </button>
       <p className='register__subtext'>

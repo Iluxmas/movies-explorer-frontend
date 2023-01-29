@@ -3,7 +3,7 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 
 import './Navigation.css';
 
-export default function Navigation() {
+export default function Navigation({ isLogged }) {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const hamburgerClass = isNavbarOpen ? 'header__hamburger header__hamburger_activated' : 'header__hamburger';
@@ -18,17 +18,8 @@ export default function Navigation() {
 
   return (
     <div className='header__navbar'>
-      <Switch>
-        <Route exact path='/'>
-          <NavLink to='/sign-up' className='header__link header__link_signup'>
-            Регистрация
-          </NavLink>
-          <NavLink to='/sign-in' className='header__link header__link_signin'>
-            Войти
-          </NavLink>
-        </Route>
-
-        <Route path='*'>
+      {isLogged ? (
+        <>
           <div className={hamburgerClass} onClick={handleClick}>
             <span className={lineOneClass}></span>
             <span className={lineTwoClass}></span>
@@ -52,8 +43,18 @@ export default function Navigation() {
               </NavLink>
             </div>
           </nav>
-        </Route>
-      </Switch>
+        </>
+      ) : (
+        <>
+          {' '}
+          <NavLink to='/sign-up' className='header__link header__link_signup'>
+            Регистрация
+          </NavLink>
+          <NavLink to='/sign-in' className='header__link header__link_signin'>
+            Войти
+          </NavLink>
+        </>
+      )}
     </div>
   );
 }

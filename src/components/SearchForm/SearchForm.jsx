@@ -7,18 +7,24 @@ export default function SearchForm({ onSearch }) {
   const [phrase, setPhrase] = useState('');
 
   useEffect(() => {
-    if (localStorage.search) {
-      setPhrase(localStorage.search);
+    const search = localStorage.getItem('search');
+    const isShort = localStorage.getItem('isShort');
+    console.log(isShort);
+    if (search) {
+      setPhrase(search);
     }
-    if (localStorage.isShort) {
-      setIsChecked(localStorage.isShort);
+    if (isShort === 'true') {
+      setIsChecked(true);
+    } else {
+      setIsChecked(false);
     }
   }, []);
 
   function handleSearch(event) {
     event.preventDefault();
     if (phrase) {
-      localStorage.search = phrase;
+      localStorage.setItem('search', phrase);
+      localStorage.setItem('isShort', isChecked);
       onSearch(phrase, isChecked);
     }
   }

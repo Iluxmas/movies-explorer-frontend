@@ -109,10 +109,6 @@
   transition: opacity 0.15s ease;
 }
 
-.login__span-error_visible {
-  opacity: 1;
-}
-
 .login__span-error_type_name {
 }
 .login__span-error_type_email {
@@ -120,7 +116,9 @@
 .login__span-error_type_password {
   margin-bottom: auto;
 }
-
+.login__span-error_visible {
+  opacity: 1;
+}
 .login__submit-button {
   display: block;
   width: 100%;

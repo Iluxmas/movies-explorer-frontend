@@ -1,4 +1,6 @@
-const apiURL = 'kino.nomoredomains.club/api';
+// const apiURL = 'kino.nomoredomains.club/api';
+const apiURL = 'http://localhost:3000/api';
+
 
 const errorMessages = {
   profileLoad: "Данные не грузятся... Сервер спит... А бэкендеры уже нет",
@@ -53,14 +55,39 @@ class MainApi {
     return this._checkResponse(newProm, this._errorMessages.patchProfileData);
   }
 
-  register(email, password) {
+  postMovieLike(data, token) {
+    const newProm = fetch(`${this._URLBase}/movies`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ ...data }),
+    });
+
+    return this._checkResponse(newProm, this._errorMessages.postMovieLike);
+  }
+
+  deleteMovieLike(movieId, token) {
+    const newProm = fetch(`${this._URLBase}/movies/${movieId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+
+    return this._checkResponse(newProm, this._errorMessages.deleteMovieLike);
+
+  }
+
+  register(name, email, password) {
     const newProm = fetch(`${this._URLBase}/signup`, {
       method: "POST",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ password, email }),
+      body: JSON.stringify({ name, email, password }),
     });
 
     return this._checkResponse(newProm, this._errorMessages.register);

@@ -1,41 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
-
+import patterns from '../../utils/constants';
 import './Login.css';
 
-export default function Login() {
+export default function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
 
   function handleInputChange(target, setState, setValidity) {
     setState(target.value);
-    console.log(target.validity.valid);
     setValidity(target.validity.valid);
   }
 
   let submitBtnClass = 'login__submit-button login__submit-button_disabled';
-  let passwordErrorSpanClass = 'profile__input-error profile__input-error_name';
-  let emailErrorSpanClass = 'profile__input-error profile__input-error_email';
+  let passwordErrorSpanClass = 'login__span-error login__span-error_type_password';
+  let emailErrorSpanClass = 'login__span-error login__span-error_type_email';
   let passwordErrorText = '';
   let emailErrorText = '';
 
-  // if (!isPasswordValid) {
-  //   passwordErrorText = 'имя должно быть длиной от 2 до 30 символов';
-  //   passwordErrorSpanClass = 'profile__input-error profile__input-error_name profile__input-error_visible';
-  // }
-  // if (!isEmailValid) {
-  //   emailErrorText = 'не соответствует формату электронной почты';
-  //   emailErrorSpanClass = 'profile__input-error profile__input-error_email profile__input-error_visible';
-  // }
+  if (!isPasswordValid) {
+    passwordErrorText = 'не должно быть пустым';
+    passwordErrorSpanClass = 'login__span-error login__span-error_type_password login__span-error_visible';
+  }
+  if (!isEmailValid) {
+    emailErrorText = 'не соответствует формату электронной почты';
+    emailErrorSpanClass = 'login__span-error login__span-error_type_email login__span-error_visible';
+  }
 
-  // if (isNameValid && isEmailValid) {
-  //   submitBtnClass = 'profile__btn profile__btn_type_submit';
-  // } else {
-  //   submitBtnClass = 'profile__btn profile__btn_type_submit profile__btn_disabled';
-  // }
+  if (isPasswordValid && isEmailValid) {
+    submitBtnClass = 'login__submit-button';
+  } else {
+    submitBtnClass = 'login__submit-button login__submit-button_disabled';
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!email || !password) return;
+    onLogin(email, password);
+    setPassword('');
+    setEmail('');
+  }
 
   return (
     <div className='login'>
@@ -57,10 +64,10 @@ export default function Login() {
           onInput={({ target }) => handleInputChange(target, setEmail, setIsEmailValid)}
           onChange={({ target }) => handleInputChange(target, setEmail, setIsEmailValid)}
           placeholder='Введите почту'
-          pattern='^\w+@\w+\.\w{2,}$'
+          pattern={patterns.email}
           required
         />
-        <span className='login__span-error login__span-error_type_email'>{passwordErrorText}</span>
+        <span className={emailErrorSpanClass}>{emailErrorText}</span>
 
         <label className='login__label' htmlFor='login_password'>
           Пароль
@@ -76,9 +83,14 @@ export default function Login() {
           placeholder='Введите пароль'
           required
         />
-        <span className='login__span-error login__span-error_type_password'>{emailErrorText}</span>
+        <span className={passwordErrorSpanClass}>{passwordErrorText}</span>
       </form>
-      <button className={submitBtnClass} type='submit'>
+      <button
+        className={submitBtnClass}
+        type='submit'
+        onClick={handleSubmit}
+        disabled={!isPasswordValid || !isEmailValid}
+      >
         Войти
       </button>
       <p className='login__subtext'>

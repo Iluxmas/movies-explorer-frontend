@@ -211,6 +211,7 @@
     width: auto;
     position: static;
     flex-basis: content;
+    background-color: transparent;
     height: auto;
     flex-direction: row;
     border-bottom: none;
