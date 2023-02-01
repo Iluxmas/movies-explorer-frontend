@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
+import searchMovies from '../../utils/searchMovies';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import MoviesCard from '../MoviesCard/MoviesCard';
+
 import './SavedMovies.css';
 
-export default function SavedMovies({ savedMovies, onDislike, onSearch, searchResult }) {
-  // const [savedMovies, setSavedMovies] = useState(null);
+export default function SavedMovies({ savedMovies, onDislike }) {
+  const [searchResult, setSearchResult] = useState(null);
 
-  // const token = localStorage.getItem('jwt');
+  useEffect(() => {
+    setSearchResult(savedMovies);
+  }, [savedMovies]);
 
-  useEffect(() => {}, []);
+  function handleSearch(phrase, isShort) {
+    const searchRes = searchMovies(savedMovies, phrase, isShort);
+    setSearchResult(searchRes);
+  }
 
   return (
     <section className='saved-movies'>
-      <SearchForm onSearch={onSearch} />
-      <MoviesCardList moviesData={savedMovies} onToggleLike={onDislike} />
+      <SearchForm onSearch={handleSearch} isPathSaved={true} inputValues={{ search: '', isShort: false }} />
+      <MoviesCardList moviesData={searchResult} isPathSaved={true} onToggleLike={onDislike} />
     </section>
   );
 }

@@ -17,6 +17,7 @@
 
 @media (min-width: 1280px) {
   .profile {
+    justify-content: flex-start;
     padding-top: 74px;
     padding-bottom: 70px;
   }
@@ -39,6 +40,7 @@
 
 @media (min-width: 1280px) {
   .profile__title {
+    margin-top: 0;
     margin-bottom: 122px;
   }
 }
@@ -53,7 +55,7 @@
 
 @media (min-width: 1280px) {
   .profile__form {
-    margin-bottom: 220px;
+    margin-bottom: auto;
   }
 }
 
@@ -79,8 +81,6 @@
   font-size: 11px;
   line-height: 13px;
   color: white;
-  /* display: inline; */
-  /* margin-left: auto; */
 }
 
 .profile__input:focus,
@@ -88,12 +88,13 @@
   border: none;
   outline: none;
 }
-
+.profile__input[disabled] {
+  opacity: 0.8;
+}
 .profile__line-divider {
   height: 1px;
   width: 100%;
   background-color: #424242;
-  /* margin-top: 16px; */
   margin-bottom: 16px;
 }
 
@@ -145,6 +146,11 @@
 @media (min-width: 768px) {
   .profile__btn_type_logout {
     margin-bottom: auto;
+  }
+}
+@media (min-width: 1280px) {
+  .profile__btn_type_logout {
+    margin-bottom: 0;
   }
 }
 .profile__input-error {

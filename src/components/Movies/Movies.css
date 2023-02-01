@@ -1,6 +1,8 @@
 .movies {
   margin: 0 auto;
-  max-width: 1140px;
+  max-width: 1280px;
+  box-sizing: border-box;
+  width: 100%;
   padding: 0 10px;
 }
 @media (min-width: 540px) {

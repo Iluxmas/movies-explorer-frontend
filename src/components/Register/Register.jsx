@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
-import patterns from '../../utils/constants';
+import { PATTERNS } from '../../utils/constants';
 
 import './Register.css';
 
-export default function Register({ onSignup }) {
+export default function Register({ onSignup, isLoading }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isNameValid, setIsNameValid] = useState(false);
+  const [nameValidity, setNameValidity] = useState({});
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
 
   function handleInputChange(target, setState, setValidity) {
     setState(target.value);
-    setValidity(target.validity.valid);
+    setValidity(target.name === 'name' ? target.validity : target.validity.valid);
     toggleErrorShow(target);
   }
 
@@ -27,16 +27,19 @@ export default function Register({ onSignup }) {
     }
   }
 
-  // useEffect(() => {
-  // }, [name, email, password]);
-
   let submitBtnClass = 'register__submit-btn register__submit-btn_disabled';
-  let nameErrorText = isNameValid ? '' : 'имя должно быть длиной от 2 до 30 символов';
-  // (кирилица, латиница, дефис и пробел)
+
+  let nameErrorText;
+  if (nameValidity && nameValidity.patternMismatch) {
+    nameErrorText = 'допустимы только кирилица, латиница, дефис и пробел';
+  } else if (nameValidity && !nameValidity.valid) {
+    nameErrorText = 'имя должно быть длиной от 2 до 30 символов';
+  }
+
   let emailErrorText = isEmailValid ? '' : 'не соответствует формату электронной почты';
   let passwordErrorText = isPasswordValid ? '' : 'это поле не должно быть пустым';
 
-  if (isNameValid && isEmailValid && isPasswordValid) {
+  if (nameValidity.valid && isEmailValid && isPasswordValid) {
     submitBtnClass = 'register__submit-btn';
   } else {
     submitBtnClass = 'register__submit-btn register__submit-btn_disabled';
@@ -69,11 +72,12 @@ export default function Register({ onSignup }) {
           name='name'
           value={name}
           placeholder='Введите имя'
-          onInput={({ target }) => handleInputChange(target, setName, setIsNameValid)}
+          onInput={({ target }) => handleInputChange(target, setName, setNameValidity)}
           onChange={({ target }) => setName(target.value)}
           minLength={2}
           maxLength={30}
-          pattern={patterns.name}
+          pattern={PATTERNS.NAME}
+          disabled={isLoading}
           required
         />
         <span className='register__span-error'>{nameErrorText}</span>
@@ -90,7 +94,8 @@ export default function Register({ onSignup }) {
           placeholder='Введите почту'
           onInput={({ target }) => handleInputChange(target, setEmail, setIsEmailValid)}
           onChange={({ target }) => setEmail(target.value)}
-          pattern={patterns.email}
+          pattern={PATTERNS.EMAIL}
+          disabled={isLoading}
           required
         />
         <span className='register__span-error'>{emailErrorText}</span>
@@ -107,6 +112,7 @@ export default function Register({ onSignup }) {
           placeholder='Введите пароль...'
           onInput={({ target }) => handleInputChange(target, setPassword, setIsPasswordValid)}
           onChange={({ target }) => setPassword(target.value)}
+          disabled={isLoading}
           required
         />
         <span className='register__span-error'>{passwordErrorText}</span>

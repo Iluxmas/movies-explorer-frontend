@@ -95,7 +95,9 @@
   border: none;
   outline: none;
 }
-
+.login__input[disabled] {
+  opacity: 0.8;
+}
 .login__span-error {
   width: 100%;
   font-weight: 400;
@@ -105,7 +107,7 @@
   color: #ee3465;
   padding-left: 2px;
   margin-bottom: 5px;
-  opacity: 0.5;
+  opacity: 0;
   transition: opacity 0.15s ease;
 }
 

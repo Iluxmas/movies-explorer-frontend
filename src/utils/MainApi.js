@@ -3,15 +3,10 @@ const apiURL = 'http://localhost:3000/api';
 
 
 const errorMessages = {
-  profileLoad: "Данные не грузятся... Сервер спит... А бэкендеры уже нет",
-  inititalCards: "Данные не грузятся... Сервер спит... А бэкендеры уже нет",
-  deleteCard:
-    "Возникла проблема с удалением карточки, обновите страницу и повторите запрос",
-  postCard: "Возникла проблема с добавлением фотографии",
-  avatarUpdate:
-    "Возникла проблема с обновлением картинки профиля, обновите страницу и повторите запрос",
+  getSavedMovies: "Проблема с загрузкой сохраненных фильмов",
   profileUpdate: "Не получилось обновить данные профиля...",
-  toggleLike: "Возникла проблема с проставкой лайка",
+  likeMovie: "Возникла проблема с добавлением в сохраненные",
+  dislikeMovie: "Возникла проблема с удалением из сохраненных",
   register: "Ошибка регистрации",
   authorize: "Ошибка авторизации",
   validate: "Токен не передан или передан не в том формате",
@@ -52,7 +47,7 @@ class MainApi {
       },
       body: JSON.stringify(data),
     });
-    return this._checkResponse(newProm, this._errorMessages.patchProfileData);
+    return this._checkResponse(newProm, this._errorMessages.profileUpdate);
   }
 
   postMovieLike(data, token) {
@@ -65,7 +60,7 @@ class MainApi {
       body: JSON.stringify({ ...data }),
     });
 
-    return this._checkResponse(newProm, this._errorMessages.postMovieLike);
+    return this._checkResponse(newProm, this._errorMessages.likeMovie);
   }
 
   deleteMovieLike(movieId, token) {
@@ -76,7 +71,7 @@ class MainApi {
       }
     });
 
-    return this._checkResponse(newProm, this._errorMessages.deleteMovieLike);
+    return this._checkResponse(newProm, this._errorMessages.dislikeMovie);
 
   }
 

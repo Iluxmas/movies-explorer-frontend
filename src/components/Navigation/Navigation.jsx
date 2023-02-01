@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './Navigation.css';
 
@@ -28,25 +28,33 @@ export default function Navigation({ isLogged }) {
           <div className='header__fadeout'></div>
           <nav className={navbarMenuClass}>
             <div className='header__menu-container'>
-              <NavLink to='/' className='header__link header__link_main'>
+              <NavLink to='/' className='header__link header__link_main' onClick={() => setIsNavbarOpen(false)}>
                 Главная
               </NavLink>
-              <NavLink to='/movies' className='header__link header__link_movies'>
+              <NavLink to='/movies' className='header__link header__link_movies' onClick={() => setIsNavbarOpen(false)}>
                 Фильмы
               </NavLink>
-              <NavLink to='/saved-movies' className='header__link header__link_saved-movies'>
+              <NavLink
+                to='/saved-movies'
+                className='header__link header__link_saved-movies'
+                onClick={() => setIsNavbarOpen(false)}
+              >
                 Сохраненные фильмы
               </NavLink>
-              <NavLink to='/profile' className='header__link header__link_account'>
+              <NavLink
+                to='/profile'
+                className='header__link header__link_account'
+                onClick={() => setIsNavbarOpen(false)}
+              >
                 <span className='header__account-text'>Аккаунт</span>
                 <span className='header__account-icon'></span>
+                <span className='header__account-background'></span>
               </NavLink>
             </div>
           </nav>
         </>
       ) : (
         <>
-          {' '}
           <NavLink to='/sign-up' className='header__link header__link_signup'>
             Регистрация
           </NavLink>

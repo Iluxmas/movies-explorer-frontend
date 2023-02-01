@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
-import patterns from '../../utils/constants';
+import { PATTERNS } from '../../utils/constants';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import './Profile.css';
 
-const userData = { name: 'Ilya', email: 'qweqweqwe@qwe.com' };
-
-export default function Profile({ onSubmit, onLogout }) {
+export default function Profile({ onSubmit, onLogout, isLoading }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [isNameValid, setIsNameValid] = useState(true);
+  const [nameValidity, setNameValidity] = useState(null);
   const [isEmailValid, setIsEmailValid] = useState(true);
 
   const currentUser = useContext(CurrentUserContext);
@@ -21,7 +19,7 @@ export default function Profile({ onSubmit, onLogout }) {
 
   function handleInputChange(target, setState, setValidity) {
     setState(target.value);
-    setValidity(target.validity.valid);
+    setValidity(target.name === 'name' ? target.validity : target.validity.valid);
   }
 
   function handleUpdataData() {
@@ -35,8 +33,12 @@ export default function Profile({ onSubmit, onLogout }) {
   let nameErrorText = '';
   let emailErrorText = '';
 
-  if (!isNameValid) {
+  if (nameValidity && nameValidity.patternMismatch) {
+    nameErrorText = 'допустимы только кирилица, латиница, дефис и пробел';
+  } else if (nameValidity && !nameValidity.valid) {
     nameErrorText = 'имя должно быть длиной от 2 до 30 символов';
+  }
+  if (nameValidity && !nameValidity.valid) {
     nameErrorSpanClass = 'profile__input-error profile__input-error_name profile__input-error_visible';
   }
   if (!isEmailValid) {
@@ -44,7 +46,12 @@ export default function Profile({ onSubmit, onLogout }) {
     emailErrorSpanClass = 'profile__input-error profile__input-error_email profile__input-error_visible';
   }
 
-  if (isNameValid && isEmailValid && (name !== currentUser.name || email !== currentUser.email)) {
+  if (
+    nameValidity &&
+    nameValidity.valid &&
+    isEmailValid &&
+    (name !== currentUser.name || email !== currentUser.email)
+  ) {
     submitBtnClass = 'profile__btn profile__btn_type_submit';
   } else {
     submitBtnClass = 'profile__btn profile__btn_type_submit profile__btn_disabled';
@@ -64,12 +71,13 @@ export default function Profile({ onSubmit, onLogout }) {
             id='profile_name'
             name='name'
             value={name}
-            onInput={({ target }) => handleInputChange(target, setName, setIsNameValid)}
+            onInput={({ target }) => handleInputChange(target, setName, setNameValidity)}
             onChange={({ target }) => setName(target.value)}
             placeholder='Введите имя'
             minLength={2}
             maxLength={30}
-            pattern={patterns.name}
+            pattern={PATTERNS.NAME}
+            disabled={isLoading}
             required
           />
         </div>
@@ -88,7 +96,8 @@ export default function Profile({ onSubmit, onLogout }) {
             onInput={({ target }) => handleInputChange(target, setEmail, setIsEmailValid)}
             onChange={({ target }) => setEmail(target.value)}
             placeholder='Введите почту'
-            pattern={patterns.email}
+            pattern={PATTERNS.EMAIL}
+            disabled={isLoading}
             required
           />
         </div>
@@ -98,7 +107,7 @@ export default function Profile({ onSubmit, onLogout }) {
         className={submitBtnClass}
         type='submit'
         onClick={handleUpdataData}
-        disabled={!isNameValid || !isEmailValid}
+        disabled={(nameValidity && !nameValidity.valid) || !isEmailValid}
       >
         Редактировать
       </button>

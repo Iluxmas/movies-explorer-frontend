@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
-import patterns from '../../utils/constants';
+import { PATTERNS } from '../../utils/constants';
 import './Login.css';
 
-export default function Login({ onLogin }) {
+export default function Login({ onLogin, isLoading }) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -13,22 +13,23 @@ export default function Login({ onLogin }) {
   function handleInputChange(target, setState, setValidity) {
     setState(target.value);
     setValidity(target.validity.valid);
+    toggleErrorShow(target);
+  }
+
+  function toggleErrorShow(element) {
+    if (element.validity.valid) {
+      element.nextElementSibling.classList.remove('login__span-error_visible');
+    } else {
+      element.nextElementSibling.classList.add('login__span-error_visible');
+    }
   }
 
   let submitBtnClass = 'login__submit-button login__submit-button_disabled';
   let passwordErrorSpanClass = 'login__span-error login__span-error_type_password';
   let emailErrorSpanClass = 'login__span-error login__span-error_type_email';
-  let passwordErrorText = '';
-  let emailErrorText = '';
 
-  if (!isPasswordValid) {
-    passwordErrorText = 'не должно быть пустым';
-    passwordErrorSpanClass = 'login__span-error login__span-error_type_password login__span-error_visible';
-  }
-  if (!isEmailValid) {
-    emailErrorText = 'не соответствует формату электронной почты';
-    emailErrorSpanClass = 'login__span-error login__span-error_type_email login__span-error_visible';
-  }
+  const passwordErrorText = isPasswordValid ? '' : 'не должно быть пустым';
+  let emailErrorText = isEmailValid ? '' : 'не соответствует формату электронной почты';
 
   if (isPasswordValid && isEmailValid) {
     submitBtnClass = 'login__submit-button';
@@ -40,8 +41,6 @@ export default function Login({ onLogin }) {
     event.preventDefault();
     if (!email || !password) return;
     onLogin(email, password);
-    setPassword('');
-    setEmail('');
   }
 
   return (
@@ -64,7 +63,8 @@ export default function Login({ onLogin }) {
           onInput={({ target }) => handleInputChange(target, setEmail, setIsEmailValid)}
           onChange={({ target }) => handleInputChange(target, setEmail, setIsEmailValid)}
           placeholder='Введите почту'
-          pattern={patterns.email}
+          pattern={PATTERNS.EMAIL}
+          disabled={isLoading}
           required
         />
         <span className={emailErrorSpanClass}>{emailErrorText}</span>
@@ -81,6 +81,7 @@ export default function Login({ onLogin }) {
           onInput={({ target }) => handleInputChange(target, setPassword, setIsPasswordValid)}
           onChange={({ target }) => handleInputChange(target, setPassword, setIsPasswordValid)}
           placeholder='Введите пароль'
+          disabled={isLoading}
           required
         />
         <span className={passwordErrorSpanClass}>{passwordErrorText}</span>
