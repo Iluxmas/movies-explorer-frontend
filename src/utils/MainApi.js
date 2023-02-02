@@ -1,4 +1,5 @@
-const apiURL = 'kino.nomoredomains.club/api';
+const apiURL = 'https://kino.nomoredomains.club/api';
+
 
 const errorMessages = {
   getSavedMovies: "Проблема с загрузкой сохраненных фильмов",

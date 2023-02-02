@@ -5,17 +5,11 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Profile.css';
 
 export default function Profile({ onSubmit, onLogout, isLoading }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const currentUser = useContext(CurrentUserContext);
+  const [name, setName] = useState(currentUser.name);
+  const [email, setEmail] = useState(currentUser.email);
   const [nameValidity, setNameValidity] = useState(null);
   const [isEmailValid, setIsEmailValid] = useState(true);
-
-  const currentUser = useContext(CurrentUserContext);
-
-  useEffect(() => {
-    setName(currentUser.name);
-    setEmail(currentUser.email);
-  }, []);
 
   function handleInputChange(target, setState, setValidity) {
     setState(target.value);

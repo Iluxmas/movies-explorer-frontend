@@ -3,7 +3,7 @@ import React from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-export default function MoviesCardList({ moviesData, onToggleLike, isLoading, isPathSaved = false }) {
+export default function MoviesCardList({ moviesData, onToggleLike, isLoading, isPathSaved }) {
   const myMovies = JSON.parse(localStorage.getItem('myMovies'));
 
   return moviesData ? (
@@ -13,7 +13,7 @@ export default function MoviesCardList({ moviesData, onToggleLike, isLoading, is
           <MoviesCard
             movieData={movie}
             key={movie.id || movie._id}
-            isPathSaved
+            isPathSaved={isPathSaved}
             isFav={myMovies?.some((favMovie) => favMovie._id === movie._id || favMovie.movieId === movie.id)}
             onToggleLike={() => onToggleLike(movie)}
           />

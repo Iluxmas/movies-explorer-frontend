@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './SearchForm.css';
 
-export default function SearchForm({ onSearch, inputValues, isPathSaved = false }) {
+export default function SearchForm({ onSearch, inputValues, isPathSaved }) {
   const [isChecked, setIsChecked] = useState(inputValues.isShort === 'true');
   const [phrase, setPhrase] = useState(inputValues.search || '');
   const [showError, setShowError] = useState(false);

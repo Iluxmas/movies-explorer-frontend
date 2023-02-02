@@ -20,10 +20,11 @@ export default function Movies({ onMount, onLike, onSearch, searchResult, isLoad
     <section className='movies'>
       <SearchForm
         onSearch={handleSearch}
+        isPathSaved={false}
         inputValues={{ search: localStorage.getItem('search'), isShort: localStorage.getItem('isShort') }}
       />
       {isLoading && <Preloader />}
-      <MoviesCardList moviesData={searchResult} onToggleLike={onLike} isLoading={isLoading} />
+      <MoviesCardList moviesData={searchResult} isPathSaved={false} onToggleLike={onLike} isLoading={isLoading} />
       {!isHidden && <ShowMore onLoadMore={onLoadMore} />}
     </section>
   );

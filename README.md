@@ -1,5 +1,7 @@
 # Diploma Project: Movies explorer (frontend part)
 
+[PULL-REQUEST LINK](https://github.com/Iluxmas/movies-explorer-frontend/pull/3)
+
 **Figma template:** [Figma file](https://drive.google.com/file/d/1Ne6R4_BhwHD0V3AbRNDiemyQCnxSx2Ot/view?usp=sharing)
 
 **Tech stack:** React, JavaScript, API, Webpack, HTML, CSS
@@ -8,7 +10,7 @@
 
 <!-- Click the link to read description -->
 
-\*Soon will be added some functionality:\*\*
+**Functionality:**
 
 - Movies search
 - Adding to favorites
