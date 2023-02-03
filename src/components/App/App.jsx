@@ -157,6 +157,8 @@ export default function App() {
     localStorage.clear();
     setIsLogged(false);
     setCurrentUser(null);
+    setSavedMovies(null);
+    setSearchResult(null);
     history.push('/');
   }
 
@@ -208,11 +210,11 @@ export default function App() {
         duration,
         year,
         description,
-        image: `https://api.nomoreparties.co/${image.url}`,
+        image: `${MOVIE_API_URL}${image.url}`,
         trailerLink,
         nameRU,
         nameEN,
-        thumbnail: `https://api.nomoreparties.co/${image.formats.thumbnail.url}`,
+        thumbnail: `${MOVIE_API_URL}${image.formats.thumbnail.url}`,
         movieId: id,
       };
       MainApiService.postMovieLike(newMovie, token)
