@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
+import MainApiService from '../../utils/MainApi';
 import { PATTERNS } from '../../utils/constants';
+import { STATUSCODES } from '../../utils/statusCodes';
+import { POPUP_MESSAGES } from '../../utils/constants';
 
 import './Register.css';
 
-export default function Register({ onSignup, isLoading }) {
+export default function Register({ onSignup, setMessage, openPopup }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [nameValidity, setNameValidity] = useState({});
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -17,6 +21,32 @@ export default function Register({ onSignup, isLoading }) {
     setState(target.value);
     setValidity(target.name === 'name' ? target.validity : target.validity.valid);
     toggleErrorShow(target);
+  }
+
+  function handleRegister() {
+    if (!name || !email || !password) return;
+    setIsLoading(true);
+    MainApiService.register(name, email, password)
+      .then((data) => {
+        onSignup(data);
+        setName('');
+        setEmail('');
+        setPassword('');
+        setMessage(POPUP_MESSAGES.REG_SUCC);
+      })
+      .catch((err) => {
+        if (err?.includes(STATUSCODES.CONFLICT)) {
+          setMessage(POPUP_MESSAGES.CONFLICT);
+        } else if (err?.statusCode === STATUSCODES.BAD_REQUEST || err?.includes(STATUSCODES.BAD_REQUEST)) {
+          setMessage(POPUP_MESSAGES.BAD_REQUEST);
+        } else {
+          setMessage(POPUP_MESSAGES.ERROR_DEFAULT);
+        }
+      })
+      .finally(() => {
+        openPopup(true);
+        setIsLoading(false);
+      });
   }
 
   function toggleErrorShow(element) {
@@ -39,19 +69,10 @@ export default function Register({ onSignup, isLoading }) {
   let emailErrorText = isEmailValid ? '' : 'не соответствует формату электронной почты';
   let passwordErrorText = isPasswordValid ? '' : 'это поле не должно быть пустым';
 
-  if (nameValidity.valid && isEmailValid && isPasswordValid) {
+  if (nameValidity.valid && isEmailValid && isPasswordValid && !isLoading) {
     submitBtnClass = 'register__submit-btn';
   } else {
     submitBtnClass = 'register__submit-btn register__submit-btn_disabled';
-  }
-
-  function handleRegister() {
-    if (name && email && password) {
-      onSignup(name, email, password);
-      setName('');
-      setEmail('');
-      setPassword('');
-    }
   }
 
   return (
@@ -117,7 +138,7 @@ export default function Register({ onSignup, isLoading }) {
         />
         <span className='register__span-error'>{passwordErrorText}</span>
       </form>
-      <button className={submitBtnClass} type='submit' onClick={handleRegister}>
+      <button className={submitBtnClass} type='submit' onClick={handleRegister} disabled={isLoading}>
         Зарегистрироваться
       </button>
       <p className='register__subtext'>

@@ -90,6 +90,8 @@
 }
 .profile__input[disabled] {
   opacity: 0.8;
+  cursor: default;
+  pointer-events: none;
 }
 .profile__line-divider {
   height: 1px;

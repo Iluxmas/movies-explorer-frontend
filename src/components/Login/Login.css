@@ -97,6 +97,8 @@
 }
 .login__input[disabled] {
   opacity: 0.8;
+  cursor: default;
+  pointer-events: none;
 }
 .login__span-error {
   width: 100%;

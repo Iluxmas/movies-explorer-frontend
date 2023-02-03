@@ -31,7 +31,7 @@ export default function Login({ onLogin, isLoading }) {
   const passwordErrorText = isPasswordValid ? '' : 'не должно быть пустым';
   let emailErrorText = isEmailValid ? '' : 'не соответствует формату электронной почты';
 
-  if (isPasswordValid && isEmailValid) {
+  if (isPasswordValid && isEmailValid && !isLoading) {
     submitBtnClass = 'login__submit-button';
   } else {
     submitBtnClass = 'login__submit-button login__submit-button_disabled';
@@ -90,7 +90,7 @@ export default function Login({ onLogin, isLoading }) {
         className={submitBtnClass}
         type='submit'
         onClick={handleSubmit}
-        disabled={!isPasswordValid || !isEmailValid}
+        disabled={!isPasswordValid || !isEmailValid || isLoading}
       >
         Войти
       </button>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, Route, Switch, useHistory, useParams } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
 import Main from '../Main/Main';
 import Login from '../Login/Login';
@@ -38,8 +38,6 @@ export default function App() {
   const history = useHistory();
   const token = localStorage.getItem('jwt');
   const path = location.pathname;
-
-  console.log();
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -109,27 +107,9 @@ export default function App() {
     if (search) handleSearch(search, isShort);
   }, [cardsLayout]);
 
-  function handleRegister(name, email, password) {
-    setIsLoading(true);
-    MainApiService.register(name, email, password)
-      .then((data) => {
-        setCurrentUser(data);
-        handleLogin(email, password);
-        setPopupMessage(POPUP_MESSAGES.REG_SUCC);
-      })
-      .catch((err) => {
-        if (err.includes(STATUSCODES.CONFLICT)) {
-          setPopupMessage(POPUP_MESSAGES.CONFLICT);
-        } else if (err.includes(STATUSCODES.BAD_REQUEST)) {
-          setPopupMessage(POPUP_MESSAGES.BAD_REQUEST);
-        } else {
-          setPopupMessage(POPUP_MESSAGES.ERROR_DEFAULT);
-        }
-      })
-      .finally(() => {
-        setIsPopupOpen(true);
-        setIsLoading(false);
-      });
+  function handleRegister(user) {
+    setCurrentUser(user);
+    handleLogin(user.email, user.password);
   }
 
   function handleLogin(email, password) {
@@ -201,8 +181,6 @@ export default function App() {
     if (savedMovie) {
       handleDislike(savedMovie);
     } else {
-      // const myMovies = JSON.parse(localStorage.getItem('myMovies'));
-
       const { country, director, duration, year, description, image, trailerLink, nameRU, nameEN, id } = movie;
       const newMovie = {
         country,
@@ -320,7 +298,11 @@ export default function App() {
           {isLogged ? <Redirect to='/' /> : <Login onLogin={handleLogin} isLoading={isLoading} />}
         </Route>
         <Route path='/sign-up'>
-          {isLogged ? <Redirect to='/' /> : <Register onSignup={handleRegister} isLoading={isLoading} />}
+          {isLogged ? (
+            <Redirect to='/' />
+          ) : (
+            <Register onSignup={handleRegister} setMessage={setPopupMessage} openPopup={setIsPopupOpen} />
+          )}
         </Route>
         <ProtectedRoute path='/movies' isLogged={isLogged}>
           <CurrentUserContext.Provider value={currentUser}>

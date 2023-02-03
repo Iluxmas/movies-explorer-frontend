@@ -96,6 +96,8 @@
 }
 .register__input[disabled] {
   opacity: 0.8;
+  cursor: default;
+  pointer-events: none;
 }
 .register__span-error {
   width: 100%;

@@ -50,7 +50,8 @@ export default function Profile({ onSubmit, onLogout, isLoading }) {
     nameValidity &&
     nameValidity.valid &&
     isEmailValid &&
-    (name !== currentUser.name || email !== currentUser.email)
+    (name !== currentUser.name || email !== currentUser.email) &&
+    !isLoading
   ) {
     submitBtnClass = 'profile__btn profile__btn_type_submit';
   } else {
@@ -107,7 +108,9 @@ export default function Profile({ onSubmit, onLogout, isLoading }) {
         className={submitBtnClass}
         type='submit'
         onClick={handleUpdataData}
-        disabled={(nameValidity && !nameValidity.valid) || !isEmailValid}
+        disabled={
+          !nameValidity.valid || !isEmailValid || isLoading || (name == currentUser.name && email == currentUser.email)
+        }
       >
         Редактировать
       </button>
