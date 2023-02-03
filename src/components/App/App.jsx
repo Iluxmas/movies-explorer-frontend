@@ -37,7 +37,9 @@ export default function App() {
 
   const history = useHistory();
   const token = localStorage.getItem('jwt');
-  const path = useParams();
+  const path = location.pathname;
+
+  console.log();
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
