@@ -9,7 +9,7 @@ export default function Profile({ onSubmit, onLogout, isLoading }) {
 
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.name);
-  const [nameValidity, setNameValidity] = useState(null);
+  const [nameValidity, setNameValidity] = useState({ patternMismatch: false, valid: true });
   const [isEmailValid, setIsEmailValid] = useState(true);
 
   useEffect(() => {

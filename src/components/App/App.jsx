@@ -15,9 +15,9 @@ import MoviesApiService from '../../utils/MoviesApi';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { STATUSCODES } from '../../utils/statusCodes';
-import { POPUP_MESSAGES, LAYOUT, RES_BOUNDARY, MOVIE_API_URL } from '../../utils/constants';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { POPUP_MESSAGES, LAYOUT, RES_BOUNDARY, MOVIE_API_URL } from '../../utils/constants';
 
 import './App.css';
 
@@ -116,7 +116,6 @@ export default function App() {
         setPopupMessage(POPUP_MESSAGES.REG_SUCC);
       })
       .catch((err) => {
-        console.log();
         if (err.includes(STATUSCODES.CONFLICT)) {
           setPopupMessage(POPUP_MESSAGES.CONFLICT);
         } else if (err.includes(STATUSCODES.BAD_REQUEST)) {
