@@ -315,16 +315,16 @@ export default function App() {
   }
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <div className='page'>
-        <Switch>
-          <Route path='/sign-in'>
-            {isLogged ? <Redirect to='/' /> : <Login onLogin={handleLogin} isLoading={isLoading} />}
-          </Route>
-          <Route path='/sign-up'>
-            {isLogged ? <Redirect to='/' /> : <Register onSignup={handleRegister} isLoading={isLoading} />}
-          </Route>
-          <ProtectedRoute path='/movies' isLogged={isLogged}>
+    <div className='page'>
+      <Switch>
+        <Route path='/sign-in'>
+          {isLogged ? <Redirect to='/' /> : <Login onLogin={handleLogin} isLoading={isLoading} />}
+        </Route>
+        <Route path='/sign-up'>
+          {isLogged ? <Redirect to='/' /> : <Register onSignup={handleRegister} isLoading={isLoading} />}
+        </Route>
+        <ProtectedRoute path='/movies' isLogged={isLogged}>
+          <CurrentUserContext.Provider value={currentUser}>
             <Header isLogged={isLogged} />
             <Movies
               onMount={handleOnMount}
@@ -337,32 +337,33 @@ export default function App() {
               isHidden={isShowMoreHidden}
             />
             <Footer />
-          </ProtectedRoute>
-          <ProtectedRoute path='/saved-movies' isLogged={isLogged}>
+          </CurrentUserContext.Provider>
+        </ProtectedRoute>
+        <ProtectedRoute path='/saved-movies' isLogged={isLogged}>
+          <CurrentUserContext.Provider value={currentUser}>
             <Header isLogged={isLogged} />
             <SavedMovies savedMovies={savedMovies} onDislike={handleDislike} />
             <Footer />
-          </ProtectedRoute>
-          <ProtectedRoute path='/profile' isLogged={isLogged}>
+          </CurrentUserContext.Provider>
+        </ProtectedRoute>
+        <ProtectedRoute path='/profile' isLogged={isLogged}>
+          <CurrentUserContext.Provider value={currentUser}>
             <Header isLogged={isLogged} />
             <Profile onSubmit={handleUpdateUser} onLogout={handleLogout} isLoading={isLoading} />
-          </ProtectedRoute>
-          <Route exact path='/'>
+          </CurrentUserContext.Provider>
+        </ProtectedRoute>
+        <Route exact path='/'>
+          <CurrentUserContext.Provider value={currentUser}>
             <Header isLogged={isLogged} />
             <Main />
             <Footer />
-          </Route>
-          <Route path='*'>
-            <NotFound />
-          </Route>
-        </Switch>
-        <InfoTooltip
-          isOpen={isPopupOpen}
-          isSuccess={true}
-          message={popupMessage}
-          onClose={() => setIsPopupOpen(false)}
-        />
-      </div>
-    </CurrentUserContext.Provider>
+          </CurrentUserContext.Provider>
+        </Route>
+        <Route path='*'>
+          <NotFound />
+        </Route>
+      </Switch>
+      <InfoTooltip isOpen={isPopupOpen} isSuccess={true} message={popupMessage} onClose={() => setIsPopupOpen(false)} />
+    </div>
   );
 }
