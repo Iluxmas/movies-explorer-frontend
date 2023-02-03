@@ -107,9 +107,9 @@ export default function App() {
     if (search) handleSearch(search, isShort);
   }, [cardsLayout]);
 
-  function handleRegister(user) {
-    setCurrentUser(user);
-    handleLogin(user.email, user.password);
+  function handleRegister(name, email, password) {
+    setCurrentUser({ name, email });
+    handleLogin(email, password);
   }
 
   function handleLogin(email, password) {

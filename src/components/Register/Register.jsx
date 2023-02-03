@@ -27,8 +27,8 @@ export default function Register({ onSignup, setMessage, openPopup }) {
     if (!name || !email || !password) return;
     setIsLoading(true);
     MainApiService.register(name, email, password)
-      .then((data) => {
-        onSignup(data);
+      .then(({ data }) => {
+        onSignup(data.name, data.email, password);
         setName('');
         setEmail('');
         setPassword('');
