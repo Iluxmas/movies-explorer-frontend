@@ -15,7 +15,7 @@ import MoviesApiService from '../../utils/MoviesApi';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { STATUSCODES } from '../../utils/statusCodes';
-import { POPUP_MESSAGES } from '../../utils/constants';
+import { POPUP_MESSAGES, LAYOUT, RES_BOUNDARY, MOVIE_API_URL } from '../../utils/constants';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -76,11 +76,12 @@ export default function App() {
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth < 720 && cardsLayout.base !== 5) setCardsLayout((prev) => ({ ...prev, base: 5, add: 5 }));
-      else if (window.innerWidth < 1024 && cardsLayout.base !== 8)
-        setCardsLayout((prev) => ({ ...prev, base: 8, add: 2 }));
-      else if (window.innerWidth >= 1024 && cardsLayout.base !== 12)
-        setCardsLayout((prev) => ({ ...prev, base: 12, add: 3 }));
+      if (window.innerWidth < RES_BOUNDARY.MOBILE && cardsLayout.base !== LAYOUT.MOBILE.base)
+        setCardsLayout(LAYOUT.MOBILE);
+      else if (window.innerWidth < RES_BOUNDARY.TABLET && cardsLayout.base !== LAYOUT.TABLET.base)
+        setCardsLayout(LAYOUT.TABLET);
+      else if (window.innerWidth >= RES_BOUNDARY.TABLET && cardsLayout.base !== LAYOUT.DESKTOP.base)
+        setCardsLayout(LAYOUT.DESKTOP);
     }
 
     window.addEventListener('resize', handleResize);

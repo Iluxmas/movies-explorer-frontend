@@ -1,5 +1,4 @@
-const apiURL = 'https://kino.nomoredomains.club/api';
-
+import { MAIN_API_URL } from './constants';
 
 const errorMessages = {
   getSavedMovies: "Проблема с загрузкой сохраненных фильмов",
@@ -115,6 +114,6 @@ class MainApi {
   }
 }
 
-const MainApiService = new MainApi(apiURL, errorMessages);
+const MainApiService = new MainApi(MAIN_API_URL, errorMessages);
 
 export default MainApiService;

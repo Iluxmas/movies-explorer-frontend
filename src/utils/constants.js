@@ -13,3 +13,20 @@ export const POPUP_MESSAGES = {
   AUTH_ERR: 'Произошла ошибка при авторизации пользователя',
   VALIDATION: 'Произошла ошибка при аутентификации пользователя.'
 };
+
+export const SHORT_LENGTH = 40;
+
+export const LAYOUT = {
+  MOBILE: { base: 5, add: 5 },
+  TABLET: { base: 8, add: 2 },
+  DESKTOP: { base: 12, add: 3 },
+}
+
+export const RES_BOUNDARY = {
+  MOBILE: 720,
+  TABLET: 1024
+}
+
+export const MOVIE_API_URL = 'https://api.nomoreparties.co/';
+
+export const MAIN_API_URL = 'https://kino.nomoredomains.club/api';

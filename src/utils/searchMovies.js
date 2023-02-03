@@ -1,3 +1,5 @@
+import { SHORT_LENGTH } from './constants';
+
 export default function searchMovies(collection, phrase, isShort) {
   const result = [];
   collection.forEach((movie) => {
@@ -5,7 +7,7 @@ export default function searchMovies(collection, phrase, isShort) {
       if (
         (movie.nameRU.toLowerCase().indexOf(phrase.toLowerCase()) > -1 ||
           movie.nameEN.toLowerCase().indexOf(phrase.toLowerCase()) > -1) &&
-        movie.duration <= 40
+        movie.duration <= SHORT_LENGTH
       ) {
         result.push(movie);
       }
