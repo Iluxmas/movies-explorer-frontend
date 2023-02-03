@@ -32,7 +32,6 @@ export default function App() {
 
   const [isShowMoreHidden, setIsShowMoreHidden] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
 
@@ -62,10 +61,11 @@ export default function App() {
   useEffect(() => {
     if (isLogged) {
       const token = localStorage.getItem('jwt');
-      MainApiService.getMyMovies(token)
-        .then((data) => {
-          setSavedMovies(data);
-          localStorage.setItem('myMovies', JSON.stringify(data));
+      Promise.all([MainApiService.validate(token), MainApiService.getMyMovies(token)])
+        .then(([userData, savedMoviesData]) => {
+          setCurrentUser(userData);
+          setSavedMovies(savedMoviesData);
+          localStorage.setItem('myMovies', JSON.stringify(savedMoviesData));
         })
         .catch(() => {
           setPopupMessage(POPUP_MESSAGES.ERROR_DEFAULT);
@@ -137,7 +137,6 @@ export default function App() {
       .then((data) => {
         if (data.token) {
           localStorage.setItem('jwt', data.token);
-          setCurrentUser(data);
           setIsLogged(true);
           history.push('/movies');
         }
@@ -242,7 +241,6 @@ export default function App() {
       .then((data) => {
         setCurrentUser(data);
         setPopupMessage(POPUP_MESSAGES.PROFILE_UDPATE);
-        // closeAllPopups();
       })
       .catch((err) => {
         setPopupMessage(POPUP_MESSAGES.ERROR_DEFAULT);
