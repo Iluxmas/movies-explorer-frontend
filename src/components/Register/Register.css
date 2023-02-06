@@ -84,10 +84,9 @@
   border: none;
   padding: 15px;
   box-sizing: border-box;
-  margin-bottom: 20px;
+  margin-bottom: 4px;
 }
 .register__input:last-of-type {
-  margin-bottom: 10px;
 }
 
 .register__input:focus,
@@ -95,13 +94,22 @@
   border: none;
   outline: none;
 }
-
+.register__input[disabled] {
+  opacity: 0.8;
+  cursor: default;
+  pointer-events: none;
+}
 .register__span-error {
   width: 100%;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
+  height: 16px;
   color: #ee3465;
+  padding-left: 3px;
+  margin-bottom: 6px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
 }
 
 .register__span-error_type_name {
@@ -109,10 +117,14 @@
 .register__span-error_type_email {
 }
 .register__span-error_type_password {
-  margin-bottom: auto;
+  /* margin-bottom: auto; */
 }
 
-.register__submit-button {
+.register__span-error_visible {
+  opacity: 1;
+}
+
+.register__submit-btn {
   display: block;
   width: 100%;
   padding: 15px 0;
@@ -129,15 +141,22 @@
   transition: all 0.2s ease;
 }
 @media (min-width: 768px) {
-  .register__submit-button {
+  .register__submit-btn {
     font-size: 14px;
     line-height: 17px;
     padding: 14px 0;
   }
 }
-.register__submit-button:hover {
-  /* color: #ddd; */
-  background: #2e5dab;
+.register__submit-btn:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.register__submit-btn_disabled {
+  opacity: 0.5;
+}
+.register__submit-btn_disabled:hover {
+  cursor: default;
 }
 
 .register__subtext {

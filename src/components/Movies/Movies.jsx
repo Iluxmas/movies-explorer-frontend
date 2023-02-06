@@ -1,30 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import ShowMore from '../ShowMore/ShowMore';
+import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import MoviesCard from '../MoviesCard/MoviesCard';
-import Preloader from '../Preloader/Preloader';
-import ShowMore from '../ShowMore/ShowMore';
+
 import './Movies.css';
 
-export default function Movies() {
-  const cards = Array(5)
-    .fill(1)
-    .map((a, idx) => (
-      <MoviesCard
-        title={'Mesto mesto mesto'}
-        duration={122}
-        key={idx}
-        posterURL={'https://github.com/Iluxmas/resume/raw/master/src/images/projects/mesto-app.JPG'}
-        isFav={Math.random() > 0.5}
-      />
-    ));
+export default function Movies({ onMount, onLike, onSearch, searchResult, isLoading, isHidden, onLoadMore }) {
+  useEffect(() => {
+    onMount();
+  }, []);
+
+  function handleSearch(phrase, isShort) {
+    onSearch(phrase, isShort);
+  }
 
   return (
     <section className='movies'>
-      <SearchForm />
-      <Preloader />
-      <MoviesCardList>{cards}</MoviesCardList>
-      <ShowMore />
+      <SearchForm
+        onSearch={handleSearch}
+        isPathSaved={false}
+        inputValues={{ search: localStorage.getItem('search'), isShort: localStorage.getItem('isShort') }}
+      />
+      {isLoading && <Preloader />}
+      <MoviesCardList moviesData={searchResult} isPathSaved={false} onToggleLike={onLike} isLoading={isLoading} />
+      {!isHidden && <ShowMore onLoadMore={onLoadMore} />}
     </section>
   );
 }

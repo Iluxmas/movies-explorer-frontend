@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './Navigation.css';
 
-export default function Navigation() {
+export default function Navigation({ isLogged }) {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const hamburgerClass = isNavbarOpen ? 'header__hamburger header__hamburger_activated' : 'header__hamburger';
@@ -18,17 +18,8 @@ export default function Navigation() {
 
   return (
     <div className='header__navbar'>
-      <Switch>
-        <Route exact path='/'>
-          <NavLink to='/sign-up' className='header__link header__link_signup'>
-            Регистрация
-          </NavLink>
-          <NavLink to='/sign-in' className='header__link header__link_signin'>
-            Войти
-          </NavLink>
-        </Route>
-
-        <Route path='*'>
+      {isLogged ? (
+        <>
           <div className={hamburgerClass} onClick={handleClick}>
             <span className={lineOneClass}></span>
             <span className={lineTwoClass}></span>
@@ -37,23 +28,41 @@ export default function Navigation() {
           <div className='header__fadeout'></div>
           <nav className={navbarMenuClass}>
             <div className='header__menu-container'>
-              <NavLink to='/' className='header__link header__link_main'>
+              <NavLink to='/' className='header__link header__link_main' onClick={() => setIsNavbarOpen(false)}>
                 Главная
               </NavLink>
-              <NavLink to='/movies' className='header__link header__link_movies'>
+              <NavLink to='/movies' className='header__link header__link_movies' onClick={() => setIsNavbarOpen(false)}>
                 Фильмы
               </NavLink>
-              <NavLink to='/saved-movies' className='header__link header__link_saved-movies'>
+              <NavLink
+                to='/saved-movies'
+                className='header__link header__link_saved-movies'
+                onClick={() => setIsNavbarOpen(false)}
+              >
                 Сохраненные фильмы
               </NavLink>
-              <NavLink to='/profile' className='header__link header__link_account'>
+              <NavLink
+                to='/profile'
+                className='header__link header__link_account'
+                onClick={() => setIsNavbarOpen(false)}
+              >
                 <span className='header__account-text'>Аккаунт</span>
                 <span className='header__account-icon'></span>
+                <span className='header__account-background'></span>
               </NavLink>
             </div>
           </nav>
-        </Route>
-      </Switch>
+        </>
+      ) : (
+        <>
+          <NavLink to='/sign-up' className='header__link header__link_signup'>
+            Регистрация
+          </NavLink>
+          <NavLink to='/sign-in' className='header__link header__link_signin'>
+            Войти
+          </NavLink>
+        </>
+      )}
     </div>
   );
 }

@@ -62,20 +62,20 @@
 
 .header__account-text {
   transition: all 0.2s ease;
+  z-index: 2;
 }
 .header__link_account {
   display: flex;
   align-items: center;
-  gap: 17px;
+  gap: 12px;
   margin-top: auto;
   font-size: 14px;
   line-height: 16px;
+  position: relative;
 }
 
 .header__account-icon {
   display: inline-block;
-  background-color: #313131;
-  border-radius: 4px;
   background-image: url(../../images/icon__COLOR_icon-main.svg);
   background-position: center center;
   background-size: 11.5px 14px;
@@ -83,19 +83,44 @@
   width: 26px;
   height: 30px;
   transition: all 0.2s ease;
+  z-index: 2;
 }
 
 @media (min-width: 769px) {
   .header__account-icon {
   }
 }
+.header__link_account:hover {
+  opacity: 0.7;
+}
+.header__link_account:hover .header__account-icon {
+  background-size: 11.5px 14px;
+}
 
-.header__account-text:hover,
-.header__account-icon:hover,
 .header__link_movies:hover,
 .header__link_saved-movies:hover,
 .header__link_main:hover {
   opacity: 0.5;
+}
+.header__account-background {
+  position: absolute;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #414141;
+  width: 24px;
+  height: 30px;
+  z-index: 1;
+  right: 0;
+  transition: width 0.25s ease;
+}
+@media (min-width: 769px) {
+  .header__account-background {
+    width: 26px;
+    height: 30px;
+  }
+}
+.header__link_account:hover .header__account-background {
+  width: 102px;
 }
 
 /* --------------- HAMBURGER -------------  */
@@ -211,6 +236,7 @@
     width: auto;
     position: static;
     flex-basis: content;
+    background-color: transparent;
     height: auto;
     flex-direction: row;
     border-bottom: none;
